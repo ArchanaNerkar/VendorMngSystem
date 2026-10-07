@@ -1,0 +1,180 @@
+@model VendorMngSystem.Dtos.VendorsDto
+
+<form id="VendorForm" enctype="multipart/form-data" novalidate>
+    @Html.AntiForgeryToken()
+    <input asp-for="VendorId" type="hidden" />
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-1 px-2 small mb-1 d-none"></div>
+
+    <!-- 1st Row: Vendor Name -->
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="form-group-custom mb-0">
+                <label asp-for="VendorName" class="form-label-custom">
+                    Vendor / Company Name <span class="text-danger">*</span>
+                </label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <input asp-for="VendorName" class="form-control-custom" placeholder="e.g. Acme Corporation" autocomplete="off" />
+                </div>
+                <span asp-validation-for="VendorName" class="text-danger small fw-semibold"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2nd Row: Contact Person -->
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="form-group-custom mb-0">
+                <label asp-for="ContactPerson" class="form-label-custom">
+                    Contact Person <span class="text-danger">*</span>
+                </label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <input asp-for="ContactPerson" class="form-control-custom" placeholder="e.g. John Doe" autocomplete="off" />
+                </div>
+                <span asp-validation-for="ContactPerson" class="text-danger small fw-semibold"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3rd Row: Email -->
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="form-group-custom mb-0">
+                <label asp-for="Emails" class="form-label-custom">
+                    Email Address <span class="text-danger">*</span>
+                </label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input asp-for="Emails" class="form-control-custom" placeholder="e.g. contact@acme.com" type="email" autocomplete="off" />
+                </div>
+                <span asp-validation-for="Emails" class="text-danger small fw-semibold"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4th Row: Category -->
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="form-group-custom mb-0">
+                <label asp-for="VendorsCategoryId" class="form-label-custom">
+                    Category <span class="text-danger">*</span>
+                </label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <select asp-for="VendorsCategoryId" class="form-select-custom" asp-items="@Model.vendorCategoriesList">
+                        <option value="">-- Select Category --</option>
+                    </select>
+                </div>
+                <span asp-validation-for="VendorsCategoryId" class="text-danger small fw-semibold"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5th Row: Mobile No & GST No -->
+    <div class="row g-2 mb-1">
+        <div class="col-12 col-md-6">
+            <div class="form-group-custom mb-0">
+                <label asp-for="MobileNumbers" class="form-label-custom">
+                    Mobile Number <span class="text-danger">*</span>
+                </label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-phone"></i>
+                    <input asp-for="MobileNumbers" class="form-control-custom" placeholder="e.g. 9876543210" maxlength="10" autocomplete="off" />
+                </div>
+                <span asp-validation-for="MobileNumbers" class="text-danger small fw-semibold"></span>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group-custom mb-0">
+                <label asp-for="GSTNumber" class="form-label-custom">
+                    GSTIN Number <span class="text-danger">*</span>
+                </label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-receipt"></i>
+                    <input asp-for="GSTNumber" class="form-control-custom text-uppercase font-monospace" placeholder="e.g. 22AAAAA0000A1Z5" maxlength="15" autocomplete="off" />
+                </div>
+                <span asp-validation-for="GSTNumber" class="text-danger small fw-semibold"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6th Row: Address -->
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="form-group-custom mb-0">
+                <label asp-for="VendorAddress" class="form-label-custom">
+                    Address <span class="text-danger">*</span>
+                </label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input asp-for="VendorAddress" class="form-control-custom" placeholder="Street, City, State..." autocomplete="off" />
+                </div>
+                <span asp-validation-for="VendorAddress" class="text-danger small fw-semibold"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7th Row: Document Upload (Compact) -->
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="form-group-custom mb-0">
+                <label class="form-label-custom">
+                    Documents <span class="text-muted fw-normal small">(PDF, DOC, DOCX)</span>
+                </label>
+                <div class="d-flex align-items-center gap-2 p-1 px-2 border rounded bg-light" style="height: 35px;">
+                    <label for="vendorFiles" class="btn btn-sm btn-outline-primary mb-0 d-inline-flex align-items-center gap-1 cursor-pointer py-0 px-2 flex-shrink-0" style="height: 26px; font-size: 0.78rem;">
+                        <i class="fa-solid fa-paperclip"></i>
+                        <span>Upload</span>
+                    </label>
+                    <input type="file" id="vendorFiles" name="VendorDocumentsPath" class="d-none" multiple accept=".pdf,.doc,.docx" />
+                    <div id="fileListid" class="d-flex flex-wrap gap-1 align-items-center overflow-hidden flex-grow-1" style="max-height: 26px;">
+                        <small class="text-muted fst-italic" id="noFilesText" style="font-size: 0.78rem;">No files selected</small>
+                    </div>
+                </div>
+
+                @if (Model.ExistingDocuments != null && Model.ExistingDocuments.Count > 0)
+                {
+                    <div class="d-flex flex-wrap align-items-center gap-1 mt-1" id="existingDocsList">
+                        <small class="text-muted fw-semibold me-1" style="font-size: 0.75rem;">Saved:</small>
+                        @foreach (var doc in Model.ExistingDocuments)
+                        {
+                            <span class="badge bg-white text-dark border py-1 px-2 d-inline-flex align-items-center gap-1 doc-item shadow-xs" style="font-size: 0.75rem;">
+                                <input type="hidden" name="KeptDocumentIds" value="@doc.VendorsDocumentId" />
+                                <i class="fa-solid fa-file-pdf text-danger"></i>
+                                <a href="@doc.VendorFilePath" target="_blank" class="text-dark text-decoration-none text-truncate" style="max-width: 140px;" title="@doc.VendorFileName">
+                                    @doc.VendorFileName
+                                </a>
+                                <button type="button" class="btn btn-link text-danger p-0 ms-1 btn-remove-doc text-decoration-none lh-1" title="Remove">&times;</button>
+                            </span>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Last Row: Check Box (Active Status) -->
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="form-check form-switch d-inline-flex align-items-center gap-2 m-0 p-0">
+                <input class="form-check-input form-check-input-custom ms-0 mt-0 cursor-pointer" type="checkbox" asp-for="VendorStatus" id="VendorStatusId" style="width: 2.3rem !important; height: 1.25rem !important;" />
+                <label class="form-check-label small fw-bold text-dark cursor-pointer mb-0" for="VendorStatusId">
+                    Active Status
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usual Buttons -->
+    <div class="modal-footer-custom py-2 px-0 mt-2 d-flex justify-content-end gap-2 border-top">
+        <button type="button" class="btn btn-sm btn-neutral py-1 px-3" data-bs-dismiss="modal">
+            <i class="fa-solid fa-xmark me-1"></i> Cancel
+        </button>
+        <button type="button" class="btn btn-sm btn-gradient-primary py-1 px-3" id="vendorSubmitBtn">
+            <i class="fa-solid fa-check me-1"></i> Save Vendor
+        </button>
+    </div>
+</form>

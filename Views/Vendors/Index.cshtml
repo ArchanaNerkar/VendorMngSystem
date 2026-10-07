@@ -1,0 +1,47 @@
+@model IEnumerable<VendorMngSystem.Dtos.VendorsDto>
+
+@{
+    ViewData["Title"] = "Vendors";
+}
+
+<!-- Data Table Container Card -->
+<div class="table-card mt-2">
+    <div class="table-card-header">
+        <div>
+            <h3 class="table-card-title">
+                <i class="fa-solid fa-table-list"></i>
+                <span>Registered Suppliers List</span>
+            </h3>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-gradient-primary" onclick="OpenVendorModal(0);">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Add New Vendor</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle w-100" id="vendorDetailsDatatable">
+            <thead>
+                <tr>
+                    <th>Vendor Name</th>
+                    <th>Email Address</th>
+                    <th>Contact Person</th>
+                    <th>Mobile</th>
+                    <th>GSTIN</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th class="text-center" style="width: 90px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Populated dynamically via server-side DataTables -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/commonjs/Vendors.js" asp-append-version="true"></script>
+}

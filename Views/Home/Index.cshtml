@@ -1,0 +1,75 @@
+@{
+    ViewData["Title"] = "Overview";
+}
+
+<div class="page-header-container">
+    <div>
+        <h2 class="page-header-title">
+            <i class="fa-solid fa-chart-pie text-primary"></i>
+            <span>System Overview</span>
+        </h2>
+        <p class="page-header-subtitle">
+            Vendor management system control center and operational highlights
+        </p>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <a asp-controller="Vendors" asp-action="Index" class="btn btn-gradient-primary">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            <span>Go to Vendor Directory</span>
+        </a>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-12 col-md-4">
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <span class="stat-card-label">Fast Onboarding</span>
+                <div class="stat-icon primary">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+            </div>
+            <h4 class="fw-bold mb-2">Automated Master Setup</h4>
+            <p class="stat-card-desc">Quickly register vendors, categorize suppliers, and maintain structured compliance profiles with real-time field validation.</p>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <span class="stat-card-label">Compliance</span>
+                <div class="stat-icon success">
+                    <i class="fa-solid fa-file-shield"></i>
+                </div>
+            </div>
+            <h4 class="fw-bold mb-2">Document Vault</h4>
+            <p class="stat-card-desc">Attach GST, contracts, and certifications directly to vendor records with secure multi-file tracking and download capabilities.</p>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <span class="stat-card-label">Analytics</span>
+                <div class="stat-icon info">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                </div>
+            </div>
+            <h4 class="fw-bold mb-2">High-Speed Search</h4>
+            <p class="stat-card-desc">Instant server-side pagination, sorting, and multi-parameter filtering across all registered suppliers and tax IDs.</p>
+        </div>
+    </div>
+</div>
+
+<div class="table-card text-center py-5">
+    <div class="max-w-md mx-auto">
+        <div class="brand-icon-box mx-auto mb-3" style="width: 60px; height: 60px; font-size: 1.75rem;">
+            <i class="fa-solid fa-boxes-packing"></i>
+        </div>
+        <h3 class="fw-bold mb-2">Ready to manage your suppliers?</h3>
+        <p class="text-muted mb-4">Access the full vendor master catalog with complete editing and document management features.</p>
+        <a asp-controller="Vendors" asp-action="Index" class="btn btn-gradient-primary btn-lg px-4">
+            <i class="fa-solid fa-users-gear me-2"></i> Open Vendor Management
+        </a>
+    </div>
+</div>
